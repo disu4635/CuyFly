@@ -1,0 +1,20 @@
+[
+    {
+        "model": "cuy_app.passenger",
+        "pk": 1,
+        "fields": {
+            "name": "John",
+            "last": "Doe",
+            "gender": "male"
+        }
+    },
+    {
+        "model": "cuy_app.passenger",
+        "pk": 2,
+        "fields": {
+            "name": "Jane",
+            "last": "Doe",
+            "gender": "female"
+        }
+    }
+]

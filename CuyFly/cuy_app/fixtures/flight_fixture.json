@@ -1,0 +1,15 @@
+[
+    {
+        "model": "cuy_app.flight",
+        "pk": 1,
+        "fields": {
+            "origin": 1,
+            "destination": 2,
+            "duration": 360,
+            "departure_datetime": "2024-01-15T08:00:00Z",
+            "arrival_time": "14:00:00",
+            "plane": "Boeing 747"
+        }
+    }
+    
+]

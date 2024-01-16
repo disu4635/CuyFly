@@ -1,0 +1,37 @@
+# Archivos de configuración de Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# Directorio de archivos estáticos
+staticfiles/
+
+# Directorio de archivos media
+media/
+
+# Archivo de configuración local
+local_settings.py
+
+# Base de datos SQLite
+db.sqlite3
+
+# Entorno virtual
+venv/
+env/
+
+# Archivos de caché y sesiones de Django
+*.log
+*.pid
+
+# Archivos de compilación
+*.pyc
+*.pyo
+__pycache__/
+
+# Archivos de registro
+*.log
+
+# Archivos de configuración de sistema
+.DS_Store
+Thumbs.db

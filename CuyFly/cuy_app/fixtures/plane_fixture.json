@@ -1,0 +1,11 @@
+[
+    {
+        "model": "cuy_app.plane",
+        "pk": 1,
+        "fields": {
+            "name": "Boeing 747",
+            "capacity": 300,
+            "registration_number": "XYZ789"
+        }
+    }
+]

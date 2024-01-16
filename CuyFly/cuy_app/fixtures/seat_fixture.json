@@ -1,0 +1,16 @@
+[
+    {
+        "model": "cuy_app.seat",
+        "pk": 1,
+        "fields": {
+            "seat_number": "A1"
+        }
+    },
+    {
+        "model": "cuy_app.seat",
+        "pk": 2,
+        "fields": {
+            "seat_number": "A2"
+        }
+    }
+]

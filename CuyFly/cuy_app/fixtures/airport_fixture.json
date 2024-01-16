@@ -1,0 +1,18 @@
+[
+    {
+        "model": "cuy_app.airport",
+        "pk": 1,
+        "fields": {
+            "code": "JFK",
+            "city": "New York"
+        }
+    },
+    {
+        "model": "cuy_app.airport",
+        "pk": 2,
+        "fields": {
+            "code": "LAX",
+            "city": "Los Angeles"
+        }
+    }
+]
