@@ -22,7 +22,7 @@
             padding: 50px; /* Ajusta este valor según sea necesario */
             text-align: center;
             width: 30wh; 
-            height: 70vh; 
+            height: 98vh; 
             position: relative;
             border-radius: 15px; /* Añadido para bordes circulares */
         }
@@ -226,7 +226,7 @@
             <button id="Full" onclick="elegirOpcion('Full')">Elegir</button>   
         </div>
 
-        <div class="cuadro" style="{% if last_mobile%} {% if last_mobile == 'Premium economy' %}background-color: #5b78e7; color: white;{% endif %}{% endif%}">
+        <div class="cuadro" style="{% if last_mobile%} {% if last_mobile == 'Premium economic' %}background-color: #5b78e7; color: white;{% endif %}{% endif%}">
             <h3>Premium Economy</h3>
             <ul class="caracteristicas">
                 <li> Bolso o mochila pequeña</li>
@@ -236,7 +236,7 @@
                 <li> Asiento del medio bloqueado</li>
                 <li> Devolución total</li>
             </ul>
-            <p class="precio" style="{% if last_mobile%} {% if last_mobile == 'Premium economy' %}color: white;{% endif %} {% endif%}">COP 333.256,00<br>
+            <p class="precio" style="{% if last_mobile%} {% if last_mobile == 'Premium economic' %}color: white;{% endif %} {% endif%}">COP 333.256,00<br>
                 Por Pasajero<br>
             </p>
             <button id="Premium economic" onclick="elegirOpcion('Premium economic')" >Elegir</button>   
