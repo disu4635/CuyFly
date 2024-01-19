@@ -93,16 +93,18 @@ def select_mobile(request, ticket_id):
     # Obtén el ticket
     ticket = get_object_or_404(Ticket, id=ticket_id)
     try:
-        # Intenta obtener el último Ticket ordenado por created_at
-        latest_ticket = Ticket.objects.all().order_by('-created_at')[1]
+        if(len(Ticket.objects.all()) > 1):
+            latest_ticket = Ticket.objects.all().order_by('-created_at')[1]
+        else:
+            latest_ticket = None
     except Ticket.DoesNotExist:
         latest_ticket = None
     
     if latest_ticket:
         last_mobile = latest_ticket.mobile
         return render(request, 'select_mobile.html', {'ticket': ticket, 'last_mobile': last_mobile})
-    
-    return render(request, 'select_mobile.html', {'ticket': ticket})
+    else:
+        return render(request, 'select_mobile.html', {'ticket': ticket})
 
 def update_ticket_mobile(request, ticket_id, option):
     try:
