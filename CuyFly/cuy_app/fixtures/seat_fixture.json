@@ -3,14 +3,30 @@
         "model": "cuy_app.seat",
         "pk": 1,
         "fields": {
-            "seat_number": "A1"
+            "seat_number": "1A"
         }
     },
     {
         "model": "cuy_app.seat",
         "pk": 2,
         "fields": {
-            "seat_number": "A2"
+            "seat_number": "2A"
+        }
+    },
+
+    {
+        "model": "cuy_app.seat",
+        "pk": 2,
+        "fields": {
+            "seat_number": "3A"
+        }
+    },
+
+    {
+        "model": "cuy_app.seat",
+        "pk": 2,
+        "fields": {
+            "seat_number": "4A"
         }
     }
 ]

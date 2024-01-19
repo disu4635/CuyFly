@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Airport(models.Model):
@@ -14,7 +15,8 @@ class Flight(models.Model):
     duration = models.IntegerField()
     departure_datetime = models.DateTimeField(auto_now=False, auto_now_add=False)
     arrival_time = models.TimeField(auto_now=False, auto_now_add=False)
-    plane = models.CharField(max_length=24)    
+    plane = models.CharField(max_length=24)
+    price = models.CharField(max_length=40, default="0")    
 
     def __str__(self):
         return f"{self.id}: {self.origin} to {self.destination}"
@@ -47,8 +49,10 @@ class Ticket(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="tickets", blank=True, null=True)
     flight_destination_date = models.DateField(blank=True, null=True)
     flight_arrival_date = models.DateField(blank=True, null=True)
-    mobile = models.CharField(max_length=20,blank=True)
-    email = models.EmailField(max_length=45, blank=True)
+    mobile = models.CharField(max_length=20,blank=True, null=True)
+    email = models.EmailField(max_length=45, blank=True, null=True)
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE, related_name="ticket", blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.ref_no

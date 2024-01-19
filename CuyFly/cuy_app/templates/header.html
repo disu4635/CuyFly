@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-    
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
         header{
             background-color: #36DAD9;
             height: 15vh;
@@ -58,18 +63,25 @@
             font-weight: 700;
             word-wrap: break-word;
         }
+
+        #mis-viajes:hover{
+            cursor: pointer;
+        }
+
+        #cuy-fly:hover{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-right">
-                <img src="https://via.placeholder.com/71x42" />
-                <h1>CuyFly</h1>
+                <h1 id="cuy-fly">CuyFly</h1>
             </div>
             <div class="nav-center">
                 <p>Ofertas</p>
-                <p>Mis viajes</p>
+                <p id="mis-viajes">Mis viajes</p>
             </div>
             <div class="nav-left">
                 <p>Estado del vuelo</p>
@@ -78,4 +90,15 @@
         </nav>
     </header>
 </body>
+<script>
+    document.getElementById("mis-viajes").addEventListener("click", function() {
+        // Coloca la URL a la que deseas redirigir en el siguiente enlace
+        window.location.href = "{% url 'my_flights'%}";
+    });
+
+    document.getElementById("cuy-fly").addEventListener("click", function() {
+        // Coloca la URL a la que deseas redirigir en el siguiente enlace
+        window.location.href = "{% url 'home'%}";
+    });
+</script>
 </html>

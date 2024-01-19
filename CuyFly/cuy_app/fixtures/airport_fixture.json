@@ -3,16 +3,46 @@
         "model": "cuy_app.airport",
         "pk": 1,
         "fields": {
-            "code": "JFK",
-            "city": "New York"
+            "code": "BOG",
+            "city": "Bogota"
         }
     },
     {
         "model": "cuy_app.airport",
         "pk": 2,
         "fields": {
-            "code": "LAX",
-            "city": "Los Angeles"
+            "code": "CAL",
+            "city": "Cali"
+        }
+    },
+    {
+        "model": "cuy_app.airport",
+        "pk": 3,
+        "fields": {
+            "code": "PSO",
+            "city": "Pasto"
+        }
+    },
+    {
+        "model": "cuy_app.airport",
+        "pk": 4,
+        "fields": {
+            "code": "IBA",
+            "city": "Ibague"
+        }
+    },    {
+        "model": "cuy_app.airport",
+        "pk": 5,
+        "fields": {
+            "code": "CAT",
+            "city": "Cartagena"
+        }
+    },    {
+        "model": "cuy_app.airport",
+        "pk": 7,
+        "fields": {
+            "code": "PER",
+            "city": "Pereira"
         }
     }
 ]

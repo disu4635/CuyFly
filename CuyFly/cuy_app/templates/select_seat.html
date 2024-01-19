@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .plane {
+            /* background-color: #178b3e; */
+            background-color: #d1d1d1; 
+            background-image: url("./img/airplane3.svg");
+            /* background-image: url('./img/airplane.svg'); */
+            background-position-y: 100px;
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+
+        .seats-wrapper {
+            /* border: 2px rgb(144, 11, 221) solid; */
+            position:relative;
+            width: 330px;
+            height:1600px  
+        }
+
+        .seats {
+        /* border: 2px rgb(253, 0, 0) solid; */
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        position:relative;
+        top: 350px;
+        left: 28px;
+        }
+
+        .frame {
+        /* border: 2px rgb(20, 9, 179) solid; */
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 45px;
+        position: relative;
+        flex: 0 0 auto;
+        }
+
+        .frame-2 {
+        /* border: 2px rgb(1, 87, 8) solid; */
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 12px;
+        position: relative;
+        flex: 0 0 auto;
+        }
+
+        .div-wrapper {
+        /* border: 2px rgb(150, 7, 131) solid; */
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        position: relative;
+        flex: 0 0 auto;
+        /* background-color: #3b77dc0d; */
+        background-color: rgb(233, 240, 247);
+        border-radius: 4px;
+        /* border: 0.5px rgb(80, 78, 80) solid; */
+        }
+
+        .div-wrapper:hover {
+        cursor: pointer;
+        background-color: #36DBD9;
+        /* opacity: 0.5; */
+        color: hsl(0, 0%, 100%);
+
+        }
+
+        .text-wrapper {
+        position: relative;
+        width: 14px;
+        margin-top: -1px;
+        font-family: "Inter-Medium", Helvetica;
+        font-weight: 500;
+        color: var(--gray-555);
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 0;
+        line-height: 24px;
+        }
+
+        .frame-3 {/*It is for blue seat*/
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        position: relative;
+        flex: 0 0 auto;
+        background-color: #5C69E2;
+        border-radius: 4px;
+        }
+
+        .frame-4 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        position: relative;
+        flex: 0 0 auto;
+        background-color: #d9d9d9;
+        border-radius: 4px;
+        }
+
+        .frame-5 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        position: relative;
+        flex: 0 0 auto;
+        background-color: #7c7270;
+        border-radius: 4px;
+        }
+        .seat_type {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        }
+
+        .seat_type.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        padding: 5px;
+        /* background-color: #cae8ca;
+        border: 2px solid #4CAF50; */
+        }
+
+        .navbar {
+        background-color: #5C69E2;
+        }
+
+        .navbar-text,
+        .navbar-brand,
+        .nav-link,
+        .nav-link.active {
+        color: white;
+        }
+
+        .btn {
+        background-color: #e8114b;
+        color: white;
+        }
+
+        .btn2 {
+        background-color: #290283;
+        color: white;
+        }
+
+        .btn:hover {
+        cursor: pointer;
+        background-color: #36DBD9;
+        color: hsl(0, 0%, 100%);
+
+        }
+
+        .custom-tooltip {
+        --bs-tooltip-bg: var(--bs-primary);
+        }
+
+        .selected_seat {
+        border: 2px solid #123cc7;
+        border-radius: 10px;
+        background-color: white;
+        width: 350px;
+        height: 450px;
+        
+        }
+
+        .selected_seat.sticky_sel {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 5px;
+        }
+
+        .seat_details{
+        display: inline-flex;
+        flex-direction: row;
+        gap: 16px;
+        color: black;
+        }
+
+        .del_change{
+        color: red;
+        }
+
+        .add_continue {
+        margin-top: 80px;
+        }
+
+        .total_price{
+        padding: 5px;
+        padding-top: 10px;
+        padding-left: 20px;
+        color: black;
+        display: inline-flex;
+        flex-direction: row;
+        gap: 16px;
+        
+        }
+
+        .passenger {
+        margin-top: 0px;
+        color: black;
+        }
+
+        .num_seat {
+        padding: 4px 8px 4px 4px;
+        background-color: #3509d4;
+        color: white;
+        border-radius: 4px;
+        border: 0.5px rgb(80, 78, 80) solid;
+        }
+
+        .type_seat {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html'%}
+    <div class="container-lg plane">
+        <h2>CuyFly Airline</h2>
+        <div class="row gy-3"> <!-- manually change gutter using g{d}-{n} -->
+        <div class="col-sm-4 col-lg-4">
+            <div class="seat_type sticky">
+            <!-- <div class="p-5 bg-primary text-light">col 1</div> -->
+            <div class="dropdown">
+                <button class="btn btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Más adelante
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item active" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn2 btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Silla estándar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item active" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-lg-4">
+            <div class="m-1 p-1 seats-wrapper">
+            <!-- <div class="p-5 bg-primary text-light">col 2</div> -->
+              <div class="seats">
+                <div class="frame">
+                  <div class="frame-2">
+                    <!-- <div class="div-wrapper"><div class="text-wrapper">1A</div></div> -->
+                    <div class="div-wrapper" id="seat-1A"><div class="text-wrapper">1A</div></div>
+                    <div class="frame-3" id="seat-1B"><div class="text-wrapper">1B</div></div>
+                    <div class="div-wrapper" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="tooltip" id="seat-1C"><div class="text-wrapper">1C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-1D"><div class="text-wrapper">1D</div></div>
+                    <div class="div-wrapper" id="seat-1E"><div class="text-wrapper">1E</div></div>
+                    <div class="div-wrapper" id="seat-1F"><div class="text-wrapper">1F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-2A"><div class="text-wrapper">2A</div></div>
+                    <div class="div-wrapper" id="seat-2B"><div class="text-wrapper">2B</div></div>
+                    <div class="frame-4" id="seat-2C"><div class="text-wrapper">2C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-2D"><div class="text-wrapper">2D</div></div>
+                    <div class="div-wrapper" id="seat-2E"><div class="text-wrapper">2E</div></div>
+                    <div class="div-wrapper" id="seat-2F"><div class="text-wrapper">2F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-3A"><div class="text-wrapper">3A</div></div>
+                    <div class="div-wrapper" id="seat-3B"><div class="text-wrapper">3B</div></div>
+                    <div class="div-wrapper" id="seat-3C"><div class="text-wrapper">3C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-3D"><div class="text-wrapper">3D</div></div>
+                    <div class="div-wrapper" id="seat-3E"><div class="text-wrapper">3E</div></div>
+                    <div class="frame-5"><div class="text-wrapper-2">3F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-4A"><div class="text-wrapper">4A</div></div>
+                    <div class="frame-3" id="seat-4B"><div class="text-wrapper">4B</div></div>
+                    <div class="div-wrapper" id="seat-4C"><div class="text-wrapper">4C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-5D"><div class="text-wrapper">5D</div></div>
+                    <div class="div-wrapper" id="seat-5E"><div class="text-wrapper">5E</div></div>
+                    <div class="div-wrapper" id="seat-5F"><div class="text-wrapper">5F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-6A"><div class="text-wrapper">6A</div></div>
+                    <div class="frame-3" id="seat-6B"><div class="text-wrapper">6B</div></div>
+                    <div class="div-wrapper" id="seat-6C"><div class="text-wrapper">6C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-6D"><div class="text-wrapper">6D</div></div>
+                    <div class="div-wrapper" id="seat-6E"><div class="text-wrapper">6E</div></div>
+                    <div class="div-wrapper" id="seat-6F"><div class="text-wrapper">6F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-7A"><div class="text-wrapper">7A</div></div>
+                    <div class="frame-3" id="seat-7B"><div class="text-wrapper">7B</div></div>
+                    <div class="div-wrapper" id="seat-7C"><div class="text-wrapper">7C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-7D"><div class="text-wrapper">7D</div></div>
+                    <div class="div-wrapper" id="seat-7E"><div class="text-wrapper">7E</div></div>
+                    <div class="div-wrapper" id="seat-7F"><div class="text-wrapper">7F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-8A"><div class="text-wrapper">8A</div></div>
+                    <div class="frame-3" id="seat-8B"><div class="text-wrapper">8B</div></div>
+                    <div class="div-wrapper" id="seat-8C"><div class="text-wrapper">8C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-8D"><div class="text-wrapper">8D</div></div>
+                    <div class="div-wrapper" id="seat-8E"><div class="text-wrapper">8E</div></div>
+                    <div class="div-wrapper" id="seat-8F"><div class="text-wrapper">8F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-9A"><div class="text-wrapper">9A</div></div>
+                    <div class="frame-3" id="seat-9B"><div class="text-wrapper">9B</div></div>
+                    <div class="div-wrapper" id="seat-9C"><div class="text-wrapper">9C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-9D"><div class="text-wrapper">9D</div></div>
+                    <div class="div-wrapper" id="seat-9E"><div class="text-wrapper">9E</div></div>
+                    <div class="div-wrapper" id="seat-9F"><div class="text-wrapper">9F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-10A"><div class="text-wrapper">10A</div></div>
+                    <div class="frame-3" id="seat-10B"><div class="text-wrapper">10B</div></div>
+                    <div class="div-wrapper" id="seat-10C"><div class="text-wrapper">10C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-10D"><div class="text-wrapper">10D</div></div>
+                    <div class="div-wrapper" id="seat-10E"><div class="text-wrapper">10E</div></div>
+                    <div class="div-wrapper" id="seat-10F"><div class="text-wrapper">10F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-11A"><div class="text-wrapper">11A</div></div>
+                    <div class="frame-3" id="seat-11B"><div class="text-wrapper">11B</div></div>
+                    <div class="div-wrapper" id="seat-11C"><div class="text-wrapper">11C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-11D"><div class="text-wrapper">11D</div></div>
+                    <div class="div-wrapper" id="seat-11E"><div class="text-wrapper">11E</div></div>
+                    <div class="div-wrapper" id="seat-11F"><div class="text-wrapper">11F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-12A"><div class="text-wrapper">12A</div></div>
+                    <div class="frame-3" id="seat-12B"><div class="text-wrapper">12B</div></div>
+                    <div class="div-wrapper" id="seat-12C"><div class="text-wrapper">12C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-12D"><div class="text-wrapper">12D</div></div>
+                    <div class="div-wrapper" id="seat-12E"><div class="text-wrapper">12E</div></div>
+                    <div class="div-wrapper" id="seat-12F"><div class="text-wrapper">12F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-13A"><div class="text-wrapper">13A</div></div>
+                    <div class="frame-3" id="seat-13B"><div class="text-wrapper">13B</div></div>
+                    <div class="div-wrapper" id="seat-13C"><div class="text-wrapper">13C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-13D"><div class="text-wrapper">13D</div></div>
+                    <div class="div-wrapper" id="seat-13E"><div class="text-wrapper">13E</div></div>
+                    <div class="div-wrapper" id="seat-13F"><div class="text-wrapper">13F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-14A"><div class="text-wrapper">14A</div></div>
+                    <div class="frame-3" id="seat-14B"><div class="text-wrapper">14B</div></div>
+                    <div class="div-wrapper" id="seat-14C"><div class="text-wrapper">14C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-14D"><div class="text-wrapper">14D</div></div>
+                    <div class="div-wrapper" id="seat-14E"><div class="text-wrapper">14E</div></div>
+                    <div class="div-wrapper" id="seat-14F"><div class="text-wrapper">14F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-15A"><div class="text-wrapper">15A</div></div>
+                    <div class="frame-3" id="seat-15B"><div class="text-wrapper">15B</div></div>
+                    <div class="div-wrapper" id="seat-15C"><div class="text-wrapper">15C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-15D"><div class="text-wrapper">15D</div></div>
+                    <div class="div-wrapper" id="seat-15E"><div class="text-wrapper">15E</div></div>
+                    <div class="div-wrapper" id="seat-15F"><div class="text-wrapper">15F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-16A"><div class="text-wrapper">16A</div></div>
+                    <div class="frame-3" id="seat-16B"><div class="text-wrapper">16B</div></div>
+                    <div class="div-wrapper" id="seat-16C"><div class="text-wrapper">16C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-16D"><div class="text-wrapper">16D</div></div>
+                    <div class="div-wrapper" id="seat-16E"><div class="text-wrapper">16E</div></div>
+                    <div class="div-wrapper" id="seat-16F"><div class="text-wrapper">16F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-17A"><div class="text-wrapper">17A</div></div>
+                    <div class="frame-3" id="seat-17B"><div class="text-wrapper">17B</div></div>
+                    <div class="div-wrapper" id="seat-17C"><div class="text-wrapper">17C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-17D"><div class="text-wrapper">17D</div></div>
+                    <div class="div-wrapper" id="seat-17E"><div class="text-wrapper">17E</div></div>
+                    <div class="div-wrapper" id="seat-17F"><div class="text-wrapper">17F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-18A"><div class="text-wrapper">18A</div></div>
+                    <div class="frame-3" id="seat-18B"><div class="text-wrapper">18B</div></div>
+                    <div class="div-wrapper" id="seat-18C"><div class="text-wrapper">18C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-18D"><div class="text-wrapper">18D</div></div>
+                    <div class="div-wrapper" id="seat-18E"><div class="text-wrapper">18E</div></div>
+                    <div class="div-wrapper" id="seat-18F"><div class="text-wrapper">18F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-19A"><div class="text-wrapper">19A</div></div>
+                    <div class="frame-3" id="seat-19B"><div class="text-wrapper">19B</div></div>
+                    <div class="div-wrapper" id="seat-19C"><div class="text-wrapper">19C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-19D"><div class="text-wrapper">19D</div></div>
+                    <div class="div-wrapper" id="seat-19E"><div class="text-wrapper">19E</div></div>
+                    <div class="div-wrapper" id="seat-19F"><div class="text-wrapper">19F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-20A"><div class="text-wrapper">20A</div></div>
+                    <div class="frame-3" id="seat-20B"><div class="text-wrapper">20B</div></div>
+                    <div class="div-wrapper" id="seat-20C"><div class="text-wrapper">20C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-20D"><div class="text-wrapper">20D</div></div>
+                    <div class="div-wrapper" id="seat-20E"><div class="text-wrapper">20E</div></div>
+                    <div class="div-wrapper" id="seat-20F"><div class="text-wrapper">20F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-21A"><div class="text-wrapper">21A</div></div>
+                    <div class="frame-3" id="seat-21B"><div class="text-wrapper">21B</div></div>
+                    <div class="div-wrapper" id="seat-1C"><div class="text-wrapper">1C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-21D"><div class="text-wrapper">21D</div></div>
+                    <div class="div-wrapper" id="seat-21E"><div class="text-wrapper">21E</div></div>
+                    <div class="div-wrapper" id="seat-21F"><div class="text-wrapper">21F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-22A"><div class="text-wrapper">22A</div></div>
+                    <div class="frame-3" id="seat-22B"><div class="text-wrapper">22B</div></div>
+                    <div class="div-wrapper" id="seat-22C"><div class="text-wrapper">22C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-22D"><div class="text-wrapper">22D</div></div>
+                    <div class="div-wrapper" id="seat-22E"><div class="text-wrapper">22E</div></div>
+                    <div class="div-wrapper" id="seat-22F"><div class="text-wrapper">22F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-23A"><div class="text-wrapper">23A</div></div>
+                    <div class="frame-3" id="seat-23B"><div class="text-wrapper">23B</div></div>
+                    <div class="div-wrapper" id="seat-23C"><div class="text-wrapper">23C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-23D"><div class="text-wrapper">23D</div></div>
+                    <div class="div-wrapper" id="seat-23E"><div class="text-wrapper">23E</div></div>
+                    <div class="div-wrapper" id="seat-23F"><div class="text-wrapper">23F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-24A"><div class="text-wrapper">24A</div></div>
+                    <div class="frame-3" id="seat-24B"><div class="text-wrapper">24B</div></div>
+                    <div class="div-wrapper" id="seat-24C"><div class="text-wrapper">24C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-24D"><div class="text-wrapper">24D</div></div>
+                    <div class="div-wrapper" id="seat-24E"><div class="text-wrapper">24E</div></div>
+                    <div class="div-wrapper" id="seat-24F"><div class="text-wrapper">24F</div></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-25A"><div class="text-wrapper">25A</div></div>
+                    <div class="frame-3" id="seat-25B"><div class="text-wrapper">25B</div></div>
+                    <div class="div-wrapper" id="seat-25C"><div class="text-wrapper">25C</div></div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="div-wrapper" id="seat-25D"><div class="text-wrapper">25D</div></div>
+                    <div class="div-wrapper" id="seat-25E"><div class="text-wrapper">25E</div></div>
+                    <div class="div-wrapper" id="seat-25F"><div class="text-wrapper">25F</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-lg-4">
+            <div class="p-2 text-light selected_seat sticky_sel">
+            <div class="passenger">Pasajeros</div>
+            <div class="shadow mt-5 p-3 mb-5 bg-body-tertiary rounded seat_type">
+                <div class="seat_details">
+                <div class="num_seat">12E</div>
+                <div class="type_seat">Adulto_1 Estandar-ventana</div>
+                <div id="price" >COP 35.0000</div>
+                </div>
+            </div>
+            <div class="add_continue">
+                <div class="d-grid gap-2">
+                <button id="btn-aceptar" class="btn " type="button">agregar y continuar</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        // Función para actualizar la información del asiento seleccionado
+        function updateSelectedSeatInfo(seatNumber, seatType, seatPrice) {
+            // Actualiza el div con la información del asiento seleccionado
+            $('.num_seat').text(seatNumber);
+            $('.type_seat').text(seatType);
+            $('.total_price div:last-child').text(`COP ${seatPrice}`);
+        }
+
+        // Al hacer clic en un asiento
+        $('.div-wrapper').click(function () {
+            // Remueve la clase de selección de todos los asientos
+            $('.div-wrapper').removeClass('selected');
+
+            // Agrega la clase de selección al asiento clickeado
+            $(this).addClass('selected');
+
+            // Obtiene la información del asiento seleccionado
+            var seatNumber = $('.div-wrapper.selected .text-wrapper').text();
+            var seatType = getSeatType(seatNumber);  // Obtén el tipo de asiento
+
+            // Puedes ajustar el precio según el tipo de asiento
+            var seatPrice = calculateSeatPrice(seatType);  // Puedes ajustar esto según tu lógica
+
+            // Actualiza la información del asiento seleccionado
+            updateSelectedSeatInfo(seatNumber, seatType, seatPrice);
+        });
+
+        // Al hacer clic en el botón de aceptar
+        $('#btn-aceptar').click(function () {
+            // Obtiene el número de asiento y el ID del ticket seleccionado
+            var seatNumber = $('.div-wrapper.selected .text-wrapper').text();
+            var ticketId = {{ ticket.id }};  // Asegúrate de incluir el ID del ticket
+
+            // Envía una solicitud al servidor para actualizar el ticket con el asiento
+            fetch('/cuy_app/update_ticket/' + ticketId + '/add_seat/' + seatNumber + '/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Asegúrate de incluir el token CSRF si es necesario
+                },
+                body: JSON.stringify({}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = '/cuy_app/select_mobile/' + data.ticket_id;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Función para obtener el tipo de asiento (ventana, pasillo o centro)
+        function getSeatType(seatNumber) {
+            var seatLetter = seatNumber.charAt(seatNumber.length - 1).toUpperCase();
+
+            if (seatLetter === 'A' || seatLetter === 'F') {
+                return 'Ventana';
+            } else if (seatLetter === 'B' || seatLetter === 'E') {
+                return 'Centro';
+            } else if (seatLetter === 'C' || seatLetter === 'D') {
+                return 'Pasillo';
+            } else {
+                return 'Desconocido';
+            }
+        }
+
+        // Función para calcular el precio del asiento según el tipo (puedes ajustar esto según tu lógica)
+        function calculateSeatPrice(seatType) {
+            // Puedes definir diferentes precios según el tipo de asiento
+            if (seatType === 'Ventana') {
+                return 40000;
+            } else if (seatType === 'Centro') {
+                return 35000;
+            } else if (seatType === 'Pasillo') {
+                return 38000;
+            } else {
+                return 0;  // Valor predeterminado si el tipo de asiento es desconocido
+            }
+        }
+    });
+</script>
+</html>

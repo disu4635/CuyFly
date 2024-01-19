@@ -7,5 +7,14 @@
             "capacity": 300,
             "registration_number": "XYZ789"
         }
+    },
+    {
+        "model": "cuy_app.plane",
+        "pk": 2,
+        "fields": {
+            "name": "Airbus 300",
+            "capacity": 300,
+            "registration_number": "GJY574"
+        }
     }
 ]

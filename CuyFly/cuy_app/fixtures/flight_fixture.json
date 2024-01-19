@@ -7,8 +7,75 @@
             "destination": 2,
             "duration": 360,
             "departure_datetime": "2024-01-15T08:00:00Z",
+            "arrival_time": "10:00:00",
+            "plane": "Boeing 746",
+            "price": "200.000"
+        }
+    },
+
+    {
+        "model": "cuy_app.flight",
+        "pk": 2,
+        "fields": {
+            "origin": 1,
+            "destination": 2,
+            "duration": 360,
+            "departure_datetime": "2024-01-15T06:00:00Z",
+            "arrival_time": "8:00:00",
+            "plane": "Boeing 746",
+            "price": "200.000"
+        }
+    },
+    {
+        "model": "cuy_app.flight",
+        "pk": 3,
+        "fields": {
+            "origin": 2,
+            "destination": 3,
+            "duration": 160,
+            "departure_datetime": "2024-01-15T10:00:00Z",
+            "arrival_time": "11:00:00",
+            "plane": "Airbus 300",
+            "price": "150.000"
+        }
+    },
+    {
+        "model": "cuy_app.flight",
+        "pk": 4,
+        "fields": {
+            "origin": 3,
+            "destination": 2,
+            "duration": 160,
+            "departure_datetime": "2024-01-15T12:00:00Z",
             "arrival_time": "14:00:00",
-            "plane": "Boeing 747"
+            "plane": "Airbus 300",
+            "price": "150.000"
+        }
+    },
+    {
+        "model": "cuy_app.flight",
+        "pk": 5,
+        "fields": {
+            "origin": 4,
+            "destination": 5,
+            "duration": 260,
+            "departure_datetime": "2024-01-15T15:00:00Z",
+            "arrival_time": "17:00:00",
+            "plane": "Airbus 300",
+            "price": "180.000"
+        }
+    },
+    {
+        "model": "cuy_app.flight",
+        "pk": 6,
+        "fields": {
+            "origin": 5,
+            "destination": 4,
+            "duration": 260,
+            "departure_datetime": "2024-01-15T19:00:00Z",
+            "arrival_time": "21:00:00",
+            "plane": "Airbus 300",
+            "price": "175.000"
         }
     }
     

@@ -369,47 +369,65 @@
     {% include 'header.html'%}
     {% if flights %}
         {% for flight in flights %}
-        <div class="flight-result">
-            <p>{{ flight.origin.city }} to {{ flight.destination.city }}</p>
-            <p>Salida: {{ flight.departure_datetime }}</p>
-            <p>Llegada: {{ flight.arrival_time }}</p>
-            <p>Duración: {{ flight.duration }} minutos</p>
+        <div class="container" id="flight-{{ flight.id }}">
+            <div class="row row-flight-opt gy-3">
+                <div class="group-11-kYR">
+                    <div class="opt_origin">
+                        <div class="flight-origin-time">{{ flight.departure_datetime|time:"g:i a" }}</div>
+                        <div class="flight-origin-city">{{ flight.origin.code}}</div>
+                    </div>
+    
+                    <img class="auto-group-64xy-LF3" src="./img/auto-group-64xy.png"/>
+                    <div class="opt_destination">
+                        <div class="city_dest">
+                            <div class="flight-destination-city">{{ flight.destination.city }}</div>
+                            <div class="flight-destination-time">{{ flight.arrival_time|date:"h:i a" }}</div>
+                        </div>
+    
+                        <div class="flight-price">
+                            <div class="flight-price-from">Desde</div>
+                            <div class="div-flight-cop">
+                                <div class="flight-cop-label">COP</div>
+                                <div class="flight-cop-price">{{ flight.price }}</div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
         </div>
         {% endfor %}
     {% else %}
         <p>No se encontraron vuelos para la búsqueda especificada.</p>
     {% endif %}
-    <div class="container">
-        <div class="row row-flight-opt gy-3">
-            <div class="group-11-kYR">
-                <div class="opt_origin">
-                    <div class="flight-origin-time">7:00</div>
-                    <div class="flight-origin-city">BOG</div>
-                </div>
-
-                <img class="auto-group-64xy-LF3" src="./img/auto-group-64xy.png"/>
-                <div class="opt_destination">
-                    <div class="city_dest">
-                        <div class="flight-destination-city">PSO</div>
-                        <div class="flight-destination-time">9:00</div>
-                    </div>
-
-                    <div class="flight-price">
-                        <div class="flight-price-from">Desde</div>
-                        <div class="div-flight-cop">
-                            <div class="flight-cop-label">COP</div>
-                            <div class="flight-cop-price">310.000</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- FLIGHT OPTIONS END -->
-    </div>
-    {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous">
-    </script> {% endcomment %}
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtén todas las tarjetas de vuelo
+        var flightCards = document.querySelectorAll('.container');
+
+        // Agrega un evento de clic a cada tarjeta de vuelo
+        flightCards.forEach(function (card) {
+            card.addEventListener('click', function () {
+                // Obtiene el ID del vuelo desde la tarjeta
+                var flightId = card.id.split('-')[1];
+
+                // Envía una solicitud al servidor para crear un ticket con el vuelo seleccionado
+                fetch('/cuy_app/create_ticket/' + flightId + '/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}' // Asegúrate de incluir el token CSRF si es necesario
+                    },
+                    body: JSON.stringify({}),  
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = '/cuy_app/select_seat/' + data.ticket_id;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
 </html>
